@@ -1,7 +1,0 @@
-node_modules
-dist
-*.tsbuildinfo
-.env
-vite-dev.out.log
-vite-dev.err.log
-npm-debug.log*
