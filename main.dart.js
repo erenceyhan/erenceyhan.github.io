@@ -23450,28 +23450,34 @@ ZL:function ZL(){},
 ZM:function ZM(){},
 qf:function qf(a,b){this.a=a
 this.b=b},
-ayX(a){var s=0,r=A.u(t.wP),q,p,o,n,m,l,k,j
+ayX(a){var s=0,r=A.u(t.wP),q,p,o,n,m,l,k,j,i,h,g,f
 var $async$ayX=A.p(function(b,c){if(b===1)return A.q(c,r)
 while(true)switch(s){case 0:l=new A.bf(new A.ai($.ae,t.DV),t._C)
 k=self
-j=k.document.createElement("input")
-j.type="file"
-j.accept="image/svg+xml,.svg"
-j.multiple=!1
-j.style.opacity="0"
-j.style.position="fixed"
-j.style.left="-1000px"
-j.style.top="0"
-j.style.width="1px"
-j.style.height="1px"
-j.style.pointerEvents="none"
-p=j
+j=k.window.navigator.userAgent.toLowerCase()
+i=B.c.p(j,"iphone")||B.c.p(j,"ipad")||B.c.p(j,"ipod")
+h=B.c.p(j,"safari")&&!B.c.p(j,"crios")&&!B.c.p(j,"fxios")&&!B.c.p(j,"edgios")
+g=i||h
+f=k.document.createElement("input")
+f.type="file"
+o=g?"":".svg"
+f.accept=o
+f.multiple=!1
+f.style.opacity="0"
+f.style.position="fixed"
+f.style.left="-1000px"
+f.style.top="0"
+f.style.width="1px"
+f.style.height="1px"
+f.style.pointerEvents="none"
+p=f
 o=new A.av6(p)
 n=A.bo("focusListener")
 A.alk(p,"change",new A.av7(p,l,o),!1,t.Ds.c)
 n.b=A.bJ(new A.av8(n,p,l,o))
 k.window.addEventListener("focus",n.aG())
-try{p.showPicker()}catch(i){p.click()}q=l.a
+if(g)p.click()
+else try{p.showPicker()}catch(e){p.click()}q=l.a
 s=1
 break
 case 1:return A.r(q,r)}})
