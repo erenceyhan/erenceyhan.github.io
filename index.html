@@ -18,6 +18,9 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <meta
     name="description"
     content="Voleybol takim ismini birlikte belirlemek icin hizli ve mobil uyumlu oylama uygulamasi."
@@ -36,6 +39,38 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
+  <script>
+    (function () {
+      if (!("serviceWorker" in navigator)) {
+        return;
+      }
+
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.getRegistrations().then(async function (registrations) {
+          if (!registrations.length) {
+            sessionStorage.removeItem("flutter-sw-reset");
+            return;
+          }
+
+          await Promise.all(
+            registrations.map(function (registration) {
+              return registration.unregister();
+            }),
+          );
+
+          if (!sessionStorage.getItem("flutter-sw-reset")) {
+            sessionStorage.setItem("flutter-sw-reset", "1");
+            window.location.reload();
+            return;
+          }
+
+          sessionStorage.removeItem("flutter-sw-reset");
+        }).catch(function () {
+          sessionStorage.removeItem("flutter-sw-reset");
+        });
+      });
+    }());
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
