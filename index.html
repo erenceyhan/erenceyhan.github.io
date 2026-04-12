@@ -36,6 +36,56 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+  <script>
+    (function () {
+      const resetKey = 'flutter-sw-reset-2026-04-12-1';
+
+      function loadFlutterBootstrap() {
+        const script = document.createElement('script');
+        script.src = 'flutter_bootstrap.js';
+        script.async = true;
+        document.body.appendChild(script);
+      }
+
+      if (!('serviceWorker' in navigator)) {
+        loadFlutterBootstrap();
+        return;
+      }
+
+      let storage;
+      try {
+        storage = window.localStorage;
+      } catch (_) {
+        loadFlutterBootstrap();
+        return;
+      }
+
+      if (storage.getItem(resetKey) === 'done') {
+        loadFlutterBootstrap();
+        return;
+      }
+
+      navigator.serviceWorker.getRegistrations()
+        .then(function (registrations) {
+          if (!registrations.length) {
+            storage.setItem(resetKey, 'done');
+            loadFlutterBootstrap();
+            return;
+          }
+
+          return Promise.all(
+            registrations.map(function (registration) {
+              return registration.unregister();
+            }),
+          ).then(function () {
+            storage.setItem(resetKey, 'done');
+            window.location.reload();
+          });
+        })
+        .catch(function () {
+          loadFlutterBootstrap();
+        });
+    }());
+  </script>
 </body>
 </html>
