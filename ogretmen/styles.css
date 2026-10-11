@@ -1399,8 +1399,9 @@ legend {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #f0f4ed;
-  border-bottom: 1px solid #e1e8db;
+  background: #dce9df;
+  background: oklch(92% 0.025 150);
+  border-bottom: 1px solid #afc7b5;
   padding: 12px 20px;
   min-height: 66px;
 }
@@ -1411,14 +1412,22 @@ legend {
   min-width: 0;
 }
 .day-number {
-  font-size: 19px;
-  font-weight: 400;
-  color: #a0b299;
+  font-size: 15px;
+  font-weight: 600;
+  color: #31573f;
+  background: #c5d9cb;
+  background: oklch(86% 0.035 150);
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  flex: none;
 }
 .day-heading h2 {
   font-size: 14px;
   letter-spacing: 0;
-  color: #667d60;
+  color: #31573f;
   overflow-wrap: anywhere;
 }
 .day-content {
@@ -2407,4 +2416,57 @@ legend {
 input::placeholder,
 textarea::placeholder {
   color: #74836f;
+}
+/* Different surfaces separate day headings, work targets and the printed general note. */
+.day-content .task-fields {
+  padding: 12px;
+  background: #edf3ee;
+  background: oklch(96% 0.012 150);
+  border-radius: 8px;
+}
+.day-content .task-fields label {
+  color: #52674c;
+}
+.day-content .subject-label {
+  background: #e2ede4;
+  color: #31573f;
+  padding: 4px 8px;
+  border-radius: 5px;
+}
+.day-content .add-task {
+  background: #e8f1eb;
+  border-color: #89a990;
+  color: #31573f;
+}
+.program-note {
+  margin-top: 24px;
+  padding: 20px;
+  background: #f8f1df;
+  background: oklch(96% 0.027 85);
+  border: 1px solid #d7c48b;
+  border-radius: 12px;
+}
+.program-note h2 {
+  font-size: 16px;
+  letter-spacing: 0;
+  color: #655128;
+}
+.program-note p {
+  margin: 8px 0 12px;
+  color: #6c5830;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.program-note textarea {
+  width: 100%;
+  min-height: 110px;
+  font-size: 14px;
+  border-color: #c5b17b;
+  background: #fffdf7;
+  color: #3b3628;
+  line-height: 1.6;
+}
+.program-note .note-text {
+  margin-bottom: 0;
+  font-size: 14px;
 }
