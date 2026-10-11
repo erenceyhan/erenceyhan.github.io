@@ -3,3 +3,5 @@
 button.danger{color:var(--danger);border-color:var(--danger)}button.danger:hover{background:var(--danger);color:var(--bg)}
 #delete-user-dialog{width:min(100% - 32px,480px);max-height:calc(100dvh - 32px);overflow:auto;padding:24px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--text)}
 #delete-user-dialog::backdrop{background:rgb(0 0 0 / .7)}#delete-user-dialog h3{margin-top:0}#delete-user-dialog .row{justify-content:flex-end}#delete-user-name{overflow-wrap:anywhere}#delete-user-error{color:var(--danger)}#delete-user-error:empty{display:none}
+.account-header .theme-button{width:44px;height:44px;flex:0 0 44px;padding:0;display:grid;place-items:center;border:1px solid var(--line);border-radius:6px;background:transparent;color:var(--text);cursor:pointer}
+.account-header .theme-button svg{width:18px;height:18px}.account-header .theme-button:hover{border-color:var(--muted)}.account-header .theme-button:focus-visible{outline:2px solid var(--text);outline-offset:5px}
