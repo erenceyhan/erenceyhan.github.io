@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="tr"><head><meta http-equiv="Content-Security-Policy" content="default-src &#39;self&#39;; script-src &#39;self&#39;; style-src &#39;self&#39;; connect-src &#39;self&#39; https://br-damp-frog-b5h4rytg-portaladmin.compute.c-7.us-east-2.aws.neon.tech; img-src &#39;self&#39;; base-uri &#39;none&#39;; form-action &#39;self&#39;; object-src &#39;none&#39;"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><title>Öğretmen · Haftalık plan</title><link rel="stylesheet" href="/ogretmen/styles.css"><link rel="stylesheet" href="/account-theme.css"><script src="/account-api.js" data-api-origin="https://br-damp-frog-b5h4rytg-portaladmin.compute.c-7.us-east-2.aws.neon.tech" defer></script><script src="/theme.js" defer></script><script src="/ogretmen/teacher.js" defer></script></head>
+<body>
+<header class="header wrap"><a href="/" class="brand"><img class="brand-logo" src="/logo.png" alt="RN"> Projeler</a><nav aria-label="Hesap"><a href="/hesap/">Hesap</a><button class="theme-button" type="button" aria-label="Açık temaya geç" hidden>◐</button><button id="logout" type="button" hidden>Çıkış yap</button></nav></header>
+<main class="wrap">
+  <div class="intro"><p class="eyebrow">ÖĞRETMEN</p><h1>Haftalık planım.</h1><p>Derslerini planla, haftalık çalışmalarını takip et.</p></div>
+  <p id="message" role="status" aria-live="polite"></p>
+  <section id="gate" class="gate" hidden><h2 id="gate-title">Planların sana özel.</h2><p id="gate-text">Ders ve çalışmalarını görmek için hesabınla giriş yap.</p><a class="primary" id="teacher-login" href="/hesap/">Giriş yap</a></section>
+  <section id="workspace" aria-label="Haftalık çalışma alanı" hidden>
+    <div class="toolbar"><div><p class="welcome" id="welcome"></p><h2 id="week-title"></h2><p id="summary" class="summary"></p></div><button class="primary" id="new-plan" type="button">+ Plan ekle</button></div>
+    <nav class="week-nav" aria-label="Hafta seçimi"><button id="prev" type="button" aria-label="Önceki hafta">←</button><button id="today" type="button">Bu hafta</button><button id="next" type="button" aria-label="Sonraki hafta">→</button></nav>
+    <div id="days" class="days" aria-busy="false"></div>
+    <p class="privacy-note">Bu alandaki planlar yalnızca senin hesabına aittir.</p>
+  </section>
+</main>
+<dialog id="editor" aria-labelledby="editor-title">
+  <form id="plan-form" method="post" action="/ogretmen/"><div class="dialog-top"><h2 id="editor-title">Yeni plan</h2><button id="close-editor" type="button" aria-label="Plan formunu kapat">×</button></div>
+    <label>Başlık<input name="title" required maxlength="120" placeholder="Örn. Kesirler konu tekrarı"></label>
+    <div class="form-row"><label>Tür<select name="kind"><option value="lesson">Ders</option><option value="work">Çalışma</option></select></label><label>Ders / konu<input name="subject" maxlength="60" placeholder="Örn. Matematik"></label></div>
+    <div class="form-row"><label>Tarih<input name="date" type="date" required min="2000-01-01" max="2099-12-31"></label><label>Süre (dakika)<input name="minutes" type="number" required min="5" max="480" value="40"></label></div>
+    <label>Not<textarea name="notes" rows="3" maxlength="1200" placeholder="Hazırlık, materyal veya hatırlatmalar"></textarea></label>
+    <label class="check"><input name="done" type="checkbox"> Tamamlandı</label><p id="form-error" role="alert"></p>
+    <div class="form-actions"><button id="cancel-editor" type="button">Vazgeç</button><button class="primary" id="save-plan" type="submit">Kaydet</button></div>
+  </form>
+</dialog>
+<footer class="wrap footer">Eren Ceyhan · Öğretmen</footer>
+</body></html>
+

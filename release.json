@@ -1,0 +1,20 @@
+{
+  "sourceCommit": "1fcb073ab3eacbdc8594bd4f57790ccd80b04dd9",
+  "builtAt": "2026-10-11T01:31:48.856Z",
+  "build": "passed",
+  "publication": "artifact-prepared",
+  "projects": [
+    {
+      "id": "aylik-hesap",
+      "path": "/aylik-hesap/"
+    },
+    {
+      "id": "ogretmen",
+      "path": "/ogretmen/"
+    },
+    {
+      "id": "admin",
+      "path": "/hesap/"
+    }
+  ]
+}
