@@ -162,6 +162,12 @@
 .topic-report-heading {
   flex-wrap: wrap;
 }
+.topic-report-heading .actions {
+  align-items: flex-end;
+}
+.topic-print-filter {
+  min-width: 190px;
+}
 .boot-recovery {
   padding: 24px;
   text-align: center;
@@ -207,6 +213,9 @@
   }
   .topic-report-heading .actions button {
     flex: 1;
+  }
+  .topic-print-filter {
+    flex-basis: 100%;
   }
   .edit-mode-button span {
     display: none;
