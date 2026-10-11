@@ -16,6 +16,11 @@ $('login-form').elements.username.addEventListener('input',()=>{if(loginRetryUnt
 function show(id){sections.forEach(name=>$(name).hidden=name!==id);}
 function message(value,error=false){$('message').textContent=value;$('message').dataset.error=String(error);}
 const api=(path,options)=>window.AccountApi(path,options);
+const signupUsername=$('accept-form').elements.username;
+signupUsername.addEventListener('input',()=>{
+  const length=Array.from(signupUsername.value.trim().toLowerCase()).length;
+  signupUsername.setCustomValidity(length>=3&&length<=32?'':'Kullanıcı adı 3–32 karakter olmalı.');
+});
 function formValues(form){return Object.fromEntries(new FormData(form));}
 function bindForm(id,callback){$(id).addEventListener('submit',async event=>{event.preventDefault();if(id==='login-form'&&loginRetryUntil>Date.now())return;const form=event.currentTarget,buttons=[...form.querySelectorAll('button')];buttons.forEach(b=>b.disabled=true);message('');try{await callback(formValues(form),form);}catch(error){message(error.message,true);if(id==='login-form'&&error.status===429&&error.retryAfterSeconds)startLoginRetry(error.retryAfterSeconds);}finally{buttons.forEach(b=>b.disabled=false);if(id==='login-form')updateLoginRetry();}});}
 function element(tag,value){const node=document.createElement(tag);if(value!=null)node.textContent=value;return node;}
