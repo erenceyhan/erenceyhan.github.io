@@ -2365,7 +2365,7 @@ legend {
   color: #64785d;
 }
 .task-fields {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 .task-fields label:last-child {
   grid-column: auto;
