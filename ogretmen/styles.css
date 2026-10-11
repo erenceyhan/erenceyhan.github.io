@@ -2355,6 +2355,15 @@ legend {
   font-size: 11px;
   color: #64785d;
 }
+.task-fields {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.task-fields label:last-child {
+  grid-column: auto;
+}
+.task-fields label.task-day-field {
+  grid-column: 1 / -1;
+}
 .task-fields input,
 .task-fields select {
   font-size: 12px;
