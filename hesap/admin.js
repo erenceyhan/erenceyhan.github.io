@@ -85,9 +85,10 @@ function permissionChoices(target,current,onChange){
   for(const p of projects.filter(p=>p.auth_type==='neon'&&p.id!=='admin')){
     const label=element('label'),check=document.createElement('input');check.type='checkbox';check.value=p.id;check.checked=current.includes(p.id);
     if(onChange)check.addEventListener('change',async()=>{check.disabled=true;try{await onChange(p.id,check.checked);}catch(error){check.checked=!check.checked;message(error.message,true);}finally{check.disabled=false;}});
-    label.append(check,document.createTextNode(p.name));target.append(label);
+    label.append(check,document.createTextNode(p.id==='ogretmen'&&onChange?p.name+' — erişimi onayla':p.name));target.append(label);
   }
   if(target.childElementCount===1)target.append(element('p','Henüz kullanıcı yetkisi gerektiren başka bir Neon projesi yok.'));
+  else if(projects.some(p=>p.id==='ogretmen'))target.append(element('p',onChange?'Öğretmen işareti erişimi onaylar; kaldırmak erişimi kapatır. Onaylı öğretmenler bütün öğrencileri ve programları görebilir.':'Öğretmen erişimi kayıt sonrası yönetici tarafından ayrıca onaylanır.'));
 }
 async function selectUser(user){
   selectedUser=user;$('user-detail').hidden=false;$('user-title').textContent=`${user.name} / ${user.username}`;$('toggle-active').textContent=user.active?'Hesabı pasifleştir':'Hesabı etkinleştir';
