@@ -2,6 +2,7 @@
 const $=id=>document.getElementById(id);
 const sections=['login','otp','invite','password','twofa','account','dashboard'];
 let selectedUser=null,projects=[],permissions=[],invitationToken=null;
+let pendingDeletion=null,deletingUser=false;
 let loginRetryUntil=0,loginRetryTimer=null,limitedUsername='';
 function updateLoginRetry(){
   const remaining=Math.max(0,Math.ceil((loginRetryUntil-Date.now())/1000)),button=$('login-form').querySelector('button');
@@ -90,10 +91,35 @@ function permissionChoices(target,current,onChange){
 }
 async function selectUser(user){
   selectedUser=user;$('user-detail').hidden=false;$('user-title').textContent=`${user.name} / ${user.username}`;$('toggle-active').textContent=user.active?'Hesabı pasifleştir':'Hesabı etkinleştir';
+  $('delete-user').disabled=user.role==='admin';$('delete-user').title=user.role==='admin'?'Yönetici hesapları bu ekrandan silinemez.':'';
   permissions=await api('/api/admin/permissions');permissionChoices($('permission-list'),permissions.filter(p=>p.user_id===user.id).map(p=>p.project_id),async(projectId,allowed)=>{await api('/api/admin/permissions',{method:'POST',body:{userId:user.id,projectId,allowed}});message('Proje yetkisi güncellendi.');});
 }
 $('toggle-active').addEventListener('click',async()=>{if(!selectedUser)return;try{await api(`/api/admin/users/${selectedUser.id}/active`,{method:'POST',body:{active:!selectedUser.active}});selectedUser.active=!selectedUser.active;await selectUser(selectedUser);await loadUsers();message('Hesap durumu güncellendi.');}catch(error){message(error.message,true);}});
 $('revoke-sessions').addEventListener('click',async()=>{if(!selectedUser)return;try{await api(`/api/admin/users/${selectedUser.id}/sessions`,{method:'POST',body:{}});await loadUsers();message('Oturumlar sonlandırıldı.');}catch(error){message(error.message,true);}});
+function updateDeleteConfirmation(){
+  $('delete-user-confirm').disabled=deletingUser||!pendingDeletion||$('delete-username').value.trim().toLowerCase()!==pendingDeletion.username;
+}
+$('delete-user').addEventListener('click',()=>{
+  if(!selectedUser||selectedUser.role==='admin')return;
+  pendingDeletion={...selectedUser};$('delete-user-name').textContent=pendingDeletion.username;
+  $('delete-user-dialog').showModal();$('delete-username').focus();updateDeleteConfirmation();
+});
+$('delete-username').addEventListener('input',updateDeleteConfirmation);
+$('delete-user-cancel').addEventListener('click',()=>$('delete-user-dialog').close());
+$('delete-user-dialog').addEventListener('cancel',event=>{if(deletingUser)event.preventDefault();});
+$('delete-user-dialog').addEventListener('close',()=>{
+  pendingDeletion=null;$('delete-user-form').reset();$('delete-user-error').textContent='';updateDeleteConfirmation();
+});
+$('delete-user-form').addEventListener('submit',async event=>{
+  event.preventDefault();if(!pendingDeletion||deletingUser||$('delete-user-confirm').disabled)return;
+  const user=pendingDeletion;let deleted=false;deletingUser=true;updateDeleteConfirmation();$('delete-user-cancel').disabled=true;$('delete-user-error').textContent='';
+  try{
+    await api(`/api/admin/users/${user.id}`,{method:'DELETE',body:{confirmUsername:$('delete-username').value}});deleted=true;
+    $('delete-user-dialog').close();selectedUser=null;$('user-detail').hidden=true;
+    message('Kullanıcı silindi. Kullanıcı adı yeni bir davetle tekrar kullanılabilir.');await loadUsers();
+  }catch(error){if(deleted)message('Kullanıcı silindi; liste yenilenemedi. Sayfayı yenileyin.',true);else $('delete-user-error').textContent=error.message;}
+  finally{deletingUser=false;$('delete-user-cancel').disabled=false;updateDeleteConfirmation();}
+});
 bindForm('reset-form',async(values,form)=>{if(!selectedUser)return;await api(`/api/admin/users/${selectedUser.id}/password`,{method:'POST',body:values});form.reset();await loadUsers();message('Geçici şifre belirlendi; eski oturumlar kapatıldı. Şifreyi kullanıcıya güvenli bir kanaldan iletin.');});
 function field(form,label,name,value,type='text'){
   const wrap=element('label',label),input=document.createElement('input');input.name=name;input.type=type;
