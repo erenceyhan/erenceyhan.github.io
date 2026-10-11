@@ -1,4 +1,35 @@
 @charset "UTF-8";
+
+.danger {
+  color: #9f2d26;
+  border-color: #dcb6b1;
+}
+.danger:not(.text-button):hover:not(:disabled) {
+  background: #fff1ef;
+  border-color: #9f2d26;
+}
+.saved-drafts {
+  margin: 20px 0;
+  padding: 18px 22px;
+}
+.saved-drafts h2,
+.cleanup-section h2 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+.cleanup-section {
+  margin: 24px 0;
+  padding: 22px;
+}
+.count-cell {
+  display: grid;
+  gap: 4px;
+}
+.count-cell small {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 400;
+}
 .sheet-tabs {
   display: flex;
   gap: 4px;
@@ -1956,6 +1987,8 @@ legend {
   }
   .page-heading > .actions {
     max-width: none;
+    width: 100%;
+    min-width: 0;
     justify-content: flex-start;
   }
   .overview-counts {
