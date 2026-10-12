@@ -1605,6 +1605,38 @@ legend {
   border-radius: 8px;
   background: #f1f3ef;
 }
+.pdf-canvas-preview {
+  max-height: 62vh;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f1f3ef;
+  padding: 12px;
+}
+.pdf-canvas-preview canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: white;
+}
+.pdf-canvas-preview canvas[hidden] {
+  display: none;
+}
+.pdf-preview-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 20px;
+}
+@media (max-width: 600px) {
+  .pdf-preview-actions button {
+    flex: 1 1 100%;
+  }
+  .pdf-canvas-preview {
+    padding: 4px;
+  }
+}
 /* Native dialogs and standalone sign-in */
 .modal {
   position: fixed;
