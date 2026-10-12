@@ -2633,6 +2633,55 @@ textarea::placeholder {
 .returns-row:last-child {
   border-bottom: 0;
 }
+
+.quote-library-open {
+  align-self: flex-start;
+  margin-top: -14px;
+}
+.quote-library-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.quote-editor {
+  padding: 16px;
+  background: var(--accent-soft);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.quote-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.quote-row {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+.quote-row:first-child { padding-top: 0; }
+.quote-row p {
+  flex: 1;
+  min-width: 0;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.quote-row .actions { flex-shrink: 0; }
+.quote-row button { min-height: 44px; }
+.quote-row .icon-button { width: 44px; }
+.quote-remove { display: grid; gap: 8px; }
+.quote-empty { padding: 16px 0; color: var(--muted); }
+.quote-status { color: var(--accent); font-size: 14px; }
+@media (max-width: 560px) {
+  .quote-row { flex-direction: column; align-items: stretch; gap: 8px; }
+  .quote-row .actions { justify-content: flex-end; }
+  .quote-remove .actions { flex-wrap: wrap; }
+}
 .returns-row > strong {
   overflow-wrap: anywhere;
 }
