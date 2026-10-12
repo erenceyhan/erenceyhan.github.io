@@ -692,7 +692,7 @@ legend {
   font-size: 13px;
 }
 .main-content {
-  padding: 0 clamp(24px, 3.3vw, 56px);
+  padding: 32px clamp(24px, 3.3vw, 56px) 0;
   max-width: 1600px;
   min-width: 0;
 }
@@ -1766,7 +1766,7 @@ legend {
     font-size: 13px;
   }
   .main-content {
-    padding: 0 28px;
+    padding: 32px 28px 0;
   }
   .dashboard-columns {
     grid-template-columns: 1fr;
@@ -1887,7 +1887,7 @@ legend {
     min-width: 150px;
   }
   .main-content {
-    padding: 0 24px;
+    padding: 24px 24px 0;
   }
   .app-topline {
     margin-bottom: 28px;
@@ -1998,7 +1998,7 @@ legend {
     gap: 7px;
   }
   .main-content {
-    padding: 0 16px;
+    padding: 24px 16px 0;
   }
   .app-topline {
     font-size: 10px;
