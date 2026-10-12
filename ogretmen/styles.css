@@ -2580,11 +2580,55 @@ textarea::placeholder {
 }
 .returns-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 90px 180px 160px;
+  grid-template-columns: minmax(0, 1fr) 130px 130px 190px;
   align-items: center;
   gap: 16px;
   padding: 18px 24px;
   border-bottom: 1px solid var(--line);
+}
+.program-notifications {
+  display: flex;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  margin-bottom: 24px;
+  background: var(--surface);
+}
+.program-notifications > label {
+  min-width: 180px;
+}
+.program-list-toolbar .search {
+  flex: 1;
+}
+.returns-row > div:first-child {
+  overflow-wrap: anywhere;
+}
+.returns-row .actions {
+  flex-wrap: wrap;
+}
+@media (max-width: 760px) {
+  .program-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: visible;
+  }
+  .program-tabs button {
+    padding: 12px 8px;
+    min-height: 44px;
+  }
+  .program-list-toolbar {
+    align-items: stretch;
+  }
+  .program-list-toolbar > label {
+    width: 100%;
+  }
+  .program-notifications > label {
+    width: 100%;
+  }
+  .returns-row .actions {
+    justify-content: flex-end;
+  }
 }
 .returns-row:last-child {
   border-bottom: 0;
