@@ -1,6 +1,6 @@
 {
-  "sourceCommit": "c7bb7c6e60a09fc8db3509961a03bf7de7990d6d",
-  "builtAt": "2026-10-13T23:42:38.980Z",
+  "sourceCommit": "a2b65f2ac6ad1d293bcd1897e2f1be1d5a5191a6",
+  "builtAt": "2026-10-13T23:56:09.085Z",
   "build": "passed",
   "publication": "artifact-prepared",
   "projects": [
@@ -11,6 +11,10 @@
     {
       "id": "ogretmen",
       "path": "/ogretmen/"
+    },
+    {
+      "id": "wow-addon",
+      "path": "/wow-addon/"
     },
     {
       "id": "admin",
