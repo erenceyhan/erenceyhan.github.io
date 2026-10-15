@@ -1,6 +1,6 @@
 {
-  "sourceCommit": "2d8976dc2ad71287a405b524f4d18240bb439790",
-  "builtAt": "2026-10-15T01:46:25.759Z",
+  "sourceCommit": "f4b3c021a71b34f159ba5391a0778c8c258e19c0",
+  "builtAt": "2026-10-15T07:47:21.803Z",
   "build": "passed",
   "publication": "artifact-prepared",
   "projects": [
@@ -15,6 +15,10 @@
     {
       "id": "wow-addon",
       "path": "/wow-addon/"
+    },
+    {
+      "id": "linkler",
+      "path": "/linkler/"
     },
     {
       "id": "admin",
