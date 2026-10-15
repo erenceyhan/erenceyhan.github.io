@@ -1035,6 +1035,12 @@ legend {
   color: #9baa9e;
 }
 /* Students and history */
+.student-filters > label:not(.search) { flex: 0 1 180px; min-width: 140px; }
+.student-filters .search { align-self: flex-end; }
+@media (max-width: 560px) {
+  .student-filters .search { flex: 1 1 100%; max-width: none; }
+  .student-filters > label:not(.search) { flex: 1 1 0; min-width: 0; }
+}
 .list-toolbar {
   display: flex;
   align-items: flex-end;
