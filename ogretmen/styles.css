@@ -1632,6 +1632,21 @@ legend {
 .editor-footer button {
   flex: none;
 }
+.study-name-input {
+  text-transform: uppercase;
+}
+.catalogue-output-actions,
+.topic-print-actions {
+  max-width: 100%;
+  min-width: 0;
+}
+.catalogue-output-actions {
+  justify-content: flex-end;
+}
+.topic-print-actions .error {
+  max-width: 420px;
+  margin-top: 12px;
+}
 .topic-picker {
   border: 1px solid var(--line);
   border-radius: 8px;
